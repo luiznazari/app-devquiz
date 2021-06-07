@@ -1,0 +1,78 @@
+import 'package:DevQuiz/core/app_colors.dart';
+import 'package:DevQuiz/core/app_text_styles.dart';
+import 'package:flutter/material.dart';
+
+class AwnserWidget extends StatelessWidget {
+  final String title;
+  final bool isRight;
+  final bool isSelected;
+
+  const AwnserWidget({
+    Key? key,
+    required this.title,
+    this.isRight = false,
+    this.isSelected = false,
+  }) : super(key: key);
+
+  Color get _selectedColorRight =>
+      this.isRight ? AppColors.darkGreen : AppColors.darkRed;
+
+  Color get _selectedBorderRight =>
+      this.isRight ? AppColors.lightGreen : AppColors.lightRed;
+
+  Color get _selectedColorCardRight =>
+      this.isRight ? AppColors.lightGreen : AppColors.lightRed;
+
+  Color get _selectedBorderCardRight =>
+      this.isRight ? AppColors.green : AppColors.red;
+
+  TextStyle get _selectedTextStyleRight =>
+      this.isRight ? AppTextStyles.bodyDarkGreen : AppTextStyles.bodyDarkRed;
+
+  IconData get _selectedIconRight => this.isRight ? Icons.check : Icons.close;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: Container(
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: this.isSelected ? _selectedColorCardRight : AppColors.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.fromBorderSide(BorderSide(
+            color:
+                this.isSelected ? _selectedBorderCardRight : AppColors.border,
+          )),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Text(title, style: AppTextStyles.body),
+            ),
+            Container(
+              width: 24,
+              height: 24,
+              decoration: BoxDecoration(
+                color: this.isSelected ? _selectedColorRight : AppColors.white,
+                borderRadius: BorderRadius.circular(500),
+                border: Border.fromBorderSide(BorderSide(
+                  color:
+                      this.isSelected ? _selectedBorderRight : AppColors.border,
+                )),
+              ),
+              child: this.isSelected
+                  ? Icon(
+                      _selectedIconRight,
+                      size: 16,
+                      color: Colors.white,
+                    )
+                  : null,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
