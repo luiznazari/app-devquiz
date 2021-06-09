@@ -26,10 +26,12 @@ class AwnserWidget extends StatelessWidget {
   Color get _selectedBorderCardRight =>
       this.isRight ? AppColors.green : AppColors.red;
 
-  TextStyle get _selectedTextStyleRight =>
-      this.isRight ? AppTextStyles.bodyDarkGreen : AppTextStyles.bodyDarkRed;
+  TextStyle get _selectedTextStyleRight => this.isRight
+      ? AppTextStyles.bodyDarkGreen
+      : AppTextStyles.bodyDarkRed;
 
-  IconData get _selectedIconRight => this.isRight ? Icons.check : Icons.close;
+  IconData get _selectedIconRight =>
+      this.isRight ? Icons.check : Icons.close;
 
   @override
   Widget build(BuildContext context) {
@@ -38,28 +40,36 @@ class AwnserWidget extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: this.isSelected ? _selectedColorCardRight : AppColors.white,
+          color:
+              this.isSelected ? _selectedColorCardRight : AppColors.white,
           borderRadius: BorderRadius.circular(10),
           border: Border.fromBorderSide(BorderSide(
-            color:
-                this.isSelected ? _selectedBorderCardRight : AppColors.border,
+            color: this.isSelected
+                ? _selectedBorderCardRight
+                : AppColors.border,
           )),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: Text(title, style: AppTextStyles.body),
+              child: Text(title,
+                  style: isSelected
+                      ? _selectedTextStyleRight
+                      : AppTextStyles.body),
             ),
             Container(
               width: 24,
               height: 24,
               decoration: BoxDecoration(
-                color: this.isSelected ? _selectedColorRight : AppColors.white,
+                color: this.isSelected
+                    ? _selectedColorRight
+                    : AppColors.white,
                 borderRadius: BorderRadius.circular(500),
                 border: Border.fromBorderSide(BorderSide(
-                  color:
-                      this.isSelected ? _selectedBorderRight : AppColors.border,
+                  color: this.isSelected
+                      ? _selectedBorderRight
+                      : AppColors.border,
                 )),
               ),
               child: this.isSelected

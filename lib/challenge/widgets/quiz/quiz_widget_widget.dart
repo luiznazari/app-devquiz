@@ -28,7 +28,10 @@ class QuizWidget extends StatelessWidget {
               isRight: false,
               isSelected: true,
               title:
-                  "Possibilita a criação de lorem ipsum dolor sit amet aaaaa")
+                  "Possibilita a criação de lorem ipsum dolor sit amet aaaaa"),
+          AwnserWidget(
+              title:
+                  "Possibilita a criação de lorem ipsum dolor sit amet aaaaa"),
         ],
       ),
     );
