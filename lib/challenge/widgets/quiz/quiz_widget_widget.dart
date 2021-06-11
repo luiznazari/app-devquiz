@@ -1,4 +1,4 @@
-import 'package:DevQuiz/challenge/widgets/awnser/awnser_widget.dart';
+import 'package:DevQuiz/challenge/widgets/answer/answer_widget.dart';
 import 'package:DevQuiz/core/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -16,20 +16,20 @@ class QuizWidget extends StatelessWidget {
             style: AppTextStyles.heading,
           ),
           SizedBox(height: 24),
-          AwnserWidget(
+          AnswerWidget(
               title:
                   "Possibilita a criação de lorem ipsum dolor sit amet aaaaa"),
-          AwnserWidget(
+          AnswerWidget(
               isRight: true,
               isSelected: true,
               title:
                   "Possibilita a criação de lorem ipsum dolor sit amet aaaaa"),
-          AwnserWidget(
+          AnswerWidget(
               isRight: false,
               isSelected: true,
               title:
                   "Possibilita a criação de lorem ipsum dolor sit amet aaaaa"),
-          AwnserWidget(
+          AnswerWidget(
               title:
                   "Possibilita a criação de lorem ipsum dolor sit amet aaaaa"),
         ],
