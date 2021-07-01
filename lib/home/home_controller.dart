@@ -15,15 +15,11 @@ class Homecontroller {
   UserModel? user;
   List<QuizModel>? quizzes;
 
-  void getUser() async {
+  Future<HomeState> loadData() async {
     state = HomeState.LOADING;
     user = await repository.getUser();
-    state = HomeState.SUCCESS;
-  }
-
-  void getQuizzes() async {
-    state = HomeState.LOADING;
     quizzes = await repository.getQuizzes();
     state = HomeState.SUCCESS;
+    return state;
   }
 }
