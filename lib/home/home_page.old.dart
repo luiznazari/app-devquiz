@@ -57,6 +57,7 @@ class _HomePageState extends State<HomePageOld> {
                                   quiz.questions.length,
                               completedQuestions:
                                   '${quiz.questionAnswered}/${quiz.questions.length}',
+                              onTap: () {},
                             ))
                         .toList()),
               )
