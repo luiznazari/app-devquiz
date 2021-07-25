@@ -2,14 +2,19 @@ import 'package:DevQuiz/challenge/challenge_controller.dart';
 import 'package:DevQuiz/challenge/widgets/question_indicator/question_indicator_widget.dart';
 import 'package:DevQuiz/challenge/widgets/quiz/quiz_widget.dart';
 import 'package:DevQuiz/home/widgets/next_button/next_button_widget.dart';
+import 'package:DevQuiz/result/result_page.dart';
 import 'package:DevQuiz/shared/model/question_model.dart';
 import 'package:flutter/material.dart';
 
 class ChallengePage extends StatefulWidget {
   final List<QuestionModel> questions;
+  final String quizTitle;
 
-  const ChallengePage({Key? key, required this.questions})
-      : super(key: key);
+  const ChallengePage({
+    Key? key,
+    required this.questions,
+    required this.quizTitle,
+  }) : super(key: key);
 
   @override
   _ChallengePageState createState() => _ChallengePageState();
@@ -25,6 +30,21 @@ class _ChallengePageState extends State<ChallengePage> {
     pageController.addListener(() {
       controller.currentPage = pageController.page!.toInt() + 1;
     });
+  }
+
+  void onAnswer(bool isCorrect) {
+    controller.pageAnswered = true;
+    if (isCorrect) {
+      controller.totalCorrectAnswers++;
+    }
+    setState(() {});
+  }
+
+  void nextPage() {
+    pageController.nextPage(
+      duration: Duration(milliseconds: 100),
+      curve: Curves.linear,
+    );
   }
 
   @override
@@ -63,10 +83,7 @@ class _ChallengePageState extends State<ChallengePage> {
           children: widget.questions
               .map((question) => QuizWidget(
                     question: question,
-                    onAnswer: () {
-                      controller.pageAnswered = true;
-                      setState(() {});
-                    },
+                    onAnswer: onAnswer,
                   ))
               .toList()),
       bottomNavigationBar: SafeArea(
@@ -81,27 +98,29 @@ class _ChallengePageState extends State<ChallengePage> {
                       label: "Avançar",
                       onTap: () {
                         controller.pageAnswered = false;
-                        pageController.nextPage(
-                          duration: Duration(milliseconds: 100),
-                          curve: Curves.linear,
-                        );
+                        nextPage();
                       },
                     );
                   else
                     return NextButtonWidget.white(
                       label: "Pular",
                       onTap: () {
-                        controller.pageAnswered = false;
-                        pageController.nextPage(
-                          duration: Duration(milliseconds: 100),
-                          curve: Curves.linear,
-                        );
+                        nextPage();
                       },
                     );
                 } else
                   return NextButtonWidget.green(
                     label: "Finalizar",
-                    onTap: () => Navigator.pop(context),
+                    onTap: () => Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ResultPage(
+                            quizTitle: widget.quizTitle,
+                            totalQuestions: widget.questions.length,
+                            totalCorrectAnswers:
+                                controller.totalCorrectAnswers,
+                          ),
+                        )),
                   );
               }),
         ),

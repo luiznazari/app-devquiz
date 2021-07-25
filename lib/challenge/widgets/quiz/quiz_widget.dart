@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class QuizWidget extends StatefulWidget {
   final QuestionModel question;
-  final VoidCallback onAnswer;
+  final ValueChanged<bool> onAnswer;
 
   const QuizWidget({
     Key? key,
@@ -44,9 +44,9 @@ class _QuizWidgetState extends State<QuizWidget> {
               answer: answers(i),
               isSelected: selectedIndex == i,
               disabled: isAnswered,
-              onTap: () {
+              onTap: (isCorrect) {
                 selectedIndex = i;
-                widget.onAnswer.call();
+                widget.onAnswer.call(isCorrect);
                 setState(() {});
               },
             ),
