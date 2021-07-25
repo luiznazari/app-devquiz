@@ -1,7 +1,8 @@
-import 'package:DevQuiz/core/app_images.dart';
-import 'package:DevQuiz/core/app_text_styles.dart';
-import 'package:DevQuiz/home/widgets/next_button/next_button_widget.dart';
+import 'package:dev_quiz/core/app_images.dart';
+import 'package:dev_quiz/core/app_text_styles.dart';
+import 'package:dev_quiz/home/widgets/next_button/next_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ResultPage extends StatelessWidget {
   final String quizTitle;
@@ -66,7 +67,10 @@ class ResultPage extends StatelessWidget {
                         Expanded(
                           child: NextButtonWidget.purple(
                             label: 'Compartilhar',
-                            onTap: () {},
+                            onTap: () {
+                              Share.share(
+                                  'DevQuiz NLW 5 - Flutter: Resultado do Quiz "$quizTitle", $correctAnswersPercent% de aproveitamento.');
+                            },
                           ),
                         ),
                       ],
@@ -93,4 +97,7 @@ class ResultPage extends StatelessWidget {
       ),
     );
   }
+
+  String get correctAnswersPercent =>
+      (totalCorrectAnswers / totalQuestions * 100).toStringAsFixed(2);
 }

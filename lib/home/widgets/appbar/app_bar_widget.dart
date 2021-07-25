@@ -1,7 +1,7 @@
-import 'package:DevQuiz/core/app_gradients.dart';
-import 'package:DevQuiz/core/core.dart';
-import 'package:DevQuiz/home/widgets/score_card/score_card_widget.dart';
-import 'package:DevQuiz/shared/model/user_model.dart';
+import 'package:dev_quiz/core/app_gradients.dart';
+import 'package:dev_quiz/core/core.dart';
+import 'package:dev_quiz/home/widgets/score_card/score_card_widget.dart';
+import 'package:dev_quiz/shared/model/user_model.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends PreferredSize {
@@ -17,7 +17,8 @@ class AppBarWidget extends PreferredSize {
                       height: 161,
                       width: double.maxFinite,
                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                      decoration: BoxDecoration(gradient: AppGradients.linear),
+                      decoration:
+                          BoxDecoration(gradient: AppGradients.linear),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -48,7 +49,8 @@ class AppBarWidget extends PreferredSize {
                       ),
                     ),
                     Align(
-                        alignment: Alignment(0, 1.0), child: ScoreCardWidget())
+                        alignment: Alignment(0, 1.0),
+                        child: ScoreCardWidget())
                   ],
                 )));
 }

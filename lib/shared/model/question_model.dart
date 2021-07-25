@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:DevQuiz/shared/model/answer_model.dart';
+import 'package:dev_quiz/shared/model/answer_model.dart';
 
 class QuestionModel {
   final String title;

@@ -1,9 +1,9 @@
-import 'package:DevQuiz/challenge/challenge_controller.dart';
-import 'package:DevQuiz/challenge/widgets/question_indicator/question_indicator_widget.dart';
-import 'package:DevQuiz/challenge/widgets/quiz/quiz_widget.dart';
-import 'package:DevQuiz/home/widgets/next_button/next_button_widget.dart';
-import 'package:DevQuiz/result/result_page.dart';
-import 'package:DevQuiz/shared/model/question_model.dart';
+import 'package:dev_quiz/challenge/challenge_controller.dart';
+import 'package:dev_quiz/challenge/widgets/question_indicator/question_indicator_widget.dart';
+import 'package:dev_quiz/challenge/widgets/quiz/quiz_widget.dart';
+import 'package:dev_quiz/home/widgets/next_button/next_button_widget.dart';
+import 'package:dev_quiz/result/result_page.dart';
+import 'package:dev_quiz/shared/model/question_model.dart';
 import 'package:flutter/material.dart';
 
 class ChallengePage extends StatefulWidget {
