@@ -5,10 +5,12 @@ import 'package:DevQuiz/shared/model/answer_model.dart';
 class QuestionModel {
   final String title;
   final List<AnswerModel> answers;
+  final String explanation;
 
   QuestionModel({
     required this.title,
     required this.answers,
+    required this.explanation,
   }) : assert(
           answers.length == 4,
         );
@@ -25,6 +27,7 @@ class QuestionModel {
       title: map['title'],
       answers: List<AnswerModel>.from(
           map['answers']?.map((x) => AnswerModel.fromMap(x))),
+      explanation: map['explanation']!,
     );
   }
 

@@ -6,31 +6,34 @@
         "level": "PERITO",
         "questions": [
             {
-                "title": "Quem nasceu primeiro, o ovo, a galinha ou os dinossauros?",
+                "title": "Quem nasceu primeiro, o ovo, a galinha ou os dinossauros (1)?",
                 "answers": [
                     {"title": "O ovo"},
                     {"title": "A galinha"},
                     {"title": "Os dinossauros", "isRight": true},
                     {"title": "Erro na Matrix"}
-                ]
+                ],
+                "explanation": "Lorem ipsum dolor sit amet."
             },
             {
-                "title": "Quem nasceu primeiro, o ovo, a galinha ou os dinossauros?",
+                "title": "Quem nasceu primeiro, o ovo, a galinha ou os dinossauros (2)?",
                 "answers": [
-                    {"title": "O ovo"},
+                    {"title": "O ovo", "isRight": true},
                     {"title": "A galinha"},
-                    {"title": "Os dinossauros", "isRight": true},
+                    {"title": "Os dinossauros"},
                     {"title": "Erro na Matrix"}
-                ]
+                ],
+                "explanation": "Lorem ipsum dolor sit amet."
             },
             {
-                "title": "Quem nasceu primeiro, o ovo, a galinha ou os dinossauros?",
+                "title": "Quem nasceu primeiro, o ovo, a galinha ou os dinossauros (3)?",
                 "answers": [
                     {"title": "O ovo"},
                     {"title": "A galinha"},
-                    {"title": "Os dinossauros", "isRight": true},
-                    {"title": "Erro na Matrix"}
-                ]
+                    {"title": "Os dinossauros"},
+                    {"title": "Erro na Matrix", "isRight": true}
+                ],
+                "explanation": "Lorem ipsum dolor sit amet."
             }
         ]
     }

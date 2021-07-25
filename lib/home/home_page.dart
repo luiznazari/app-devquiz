@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:DevQuiz/challenge/challenge_page.dart';
 import 'package:DevQuiz/core/app_colors.dart';
 import 'package:DevQuiz/home/home_controller.dart';
@@ -64,8 +62,10 @@ class _HomePageState extends State<HomePage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            ChallengePage()),
+                                      builder: (context) => ChallengePage(
+                                        questions: quiz.questions,
+                                      ),
+                                    ),
                                   );
                                 },
                               ))

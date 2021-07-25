@@ -1,16 +1,32 @@
+import 'package:DevQuiz/challenge/challenge_controller.dart';
 import 'package:DevQuiz/challenge/widgets/question_indicator/question_indicator_widget.dart';
-import 'package:DevQuiz/challenge/widgets/quiz/quiz_widget_widget.dart';
+import 'package:DevQuiz/challenge/widgets/quiz/quiz_widget.dart';
 import 'package:DevQuiz/home/widgets/next_button/next_button_widget.dart';
+import 'package:DevQuiz/shared/model/question_model.dart';
 import 'package:flutter/material.dart';
 
 class ChallengePage extends StatefulWidget {
-  const ChallengePage({Key? key}) : super(key: key);
+  final List<QuestionModel> questions;
+
+  const ChallengePage({Key? key, required this.questions})
+      : super(key: key);
 
   @override
   _ChallengePageState createState() => _ChallengePageState();
 }
 
 class _ChallengePageState extends State<ChallengePage> {
+  final controller = ChallengeController();
+  final pageController = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+    pageController.addListener(() {
+      controller.currentPage = pageController.page!.toInt() + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,29 +44,66 @@ class _ChallengePageState extends State<ChallengePage> {
               //     onPressed: () {
               //       Navigator.pop(context);
               //     }),
-              QuestionIndicatorWidget(),
+
+              // Listener para atualizar este widget apenas quando há alteração no PageView.
+              ValueListenableBuilder<int>(
+                valueListenable: controller.currentPageNotifier,
+                builder: (context, value, _) => QuestionIndicatorWidget(
+                  currentPage: value,
+                  totalPages: widget.questions.length,
+                ),
+              ),
             ],
           ),
         ),
       ),
-      body: QuizWidget(title: "O que o Flutter faz em sua totalidade?"),
+      body: PageView(
+          physics: NeverScrollableScrollPhysics(),
+          controller: pageController,
+          children: widget.questions
+              .map((question) => QuizWidget(
+                    question: question,
+                    onAnswer: () {
+                      controller.pageAnswered = true;
+                      setState(() {});
+                    },
+                  ))
+              .toList()),
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              NextButtonWidget.white(
-                label: "Fácil",
-                onTap: () {},
-              ),
-              SizedBox(width: 7),
-              NextButtonWidget.green(
-                label: "Confirmar",
-                onTap: () {},
-              ),
-            ],
-          ),
+          child: ValueListenableBuilder<int>(
+              valueListenable: controller.currentPageNotifier,
+              builder: (context, value, _) {
+                if (value != widget.questions.length) {
+                  if (controller.pageAnswered)
+                    return NextButtonWidget.green(
+                      label: "Avançar",
+                      onTap: () {
+                        controller.pageAnswered = false;
+                        pageController.nextPage(
+                          duration: Duration(milliseconds: 100),
+                          curve: Curves.linear,
+                        );
+                      },
+                    );
+                  else
+                    return NextButtonWidget.white(
+                      label: "Pular",
+                      onTap: () {
+                        controller.pageAnswered = false;
+                        pageController.nextPage(
+                          duration: Duration(milliseconds: 100),
+                          curve: Curves.linear,
+                        );
+                      },
+                    );
+                } else
+                  return NextButtonWidget.green(
+                    label: "Finalizar",
+                    onTap: () => Navigator.pop(context),
+                  );
+              }),
         ),
       ),
     );
