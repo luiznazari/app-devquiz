@@ -50,7 +50,8 @@ class AppBarWidget extends PreferredSize {
                     ),
                     Align(
                         alignment: Alignment(0, 1.0),
-                        child: ScoreCardWidget())
+                        child:
+                            ScoreCardWidget(quizPercent: user.score / 100))
                   ],
                 )));
 }
